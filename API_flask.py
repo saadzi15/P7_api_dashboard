@@ -1,10 +1,6 @@
-#import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import pickle
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 import joblib
-from lightgbm import LGBMClassifier
 
 app = Flask(__name__)
 

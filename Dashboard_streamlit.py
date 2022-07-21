@@ -1,23 +1,14 @@
 import warnings
-
-import lightgbm
-
 warnings.filterwarnings("ignore")
-from sklearn.naive_bayes import GaussianNB as gnb
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 import json
-import numpy as np
-import requests
 import shap
 import joblib
-from lightgbm import LGBMClassifier
 from urllib.request import urlopen
 import plotly.express as px
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
 
 st.write("""
 	# Pret A Depenser - Credit Dashboard
