@@ -115,25 +115,25 @@ with st.sidebar:
                 st.dataframe(client_info)
 
 #Afficher la décision de crédit
-# -------------------------------------------------------
 
 if (show_credit_decision):
     st.header('Scoring et décision du modèle')
 
-    # Appel de l'API :
-
+#Appel de l'API :
     API_url = "http://127.0.0.1:5000/credit/" + str(id_client)
 
+#Prédiction du score du client
     with st.spinner('Chargement du score du client...'):
         json_url = urlopen(API_url)
         API_data = json.loads(json_url.read())
         classe_predite = API_data['prediction']
         if classe_predite == 1:
-            decision = '❌ Mauvais prospect (Crédit Refusé)'
+            decision = 'Crédit refusé'
         else:
-            decision = '✅ Bon prospect (Crédit Accordé)'
+            decision = 'Crédit accordé'
         proba = 1 - API_data['proba']
 
+#Calcul du score du client
         client_score = round(proba * 100, 2)
 
         left_column, right_column = st.columns((1, 2))
@@ -151,12 +151,10 @@ if (show_credit_decision):
                     .format(decision), \
                 unsafe_allow_html=True)
 
-        # Afficher la feature importance globale
-        #-------------------------------------------------------
+# Afficher la feature importance globale
 Feature_imp = PATH+r'Feature_importance.png'
 with open(PATH+'val_file.pkl', 'rb') as f:
     shap_values = joblib.load(f)
-
 
 if (shap_general):
     st.write('Le graphique suivant indique les variables ayant le plus contribué au modèle.')
@@ -165,8 +163,7 @@ if (shap_general):
 
     st.button("Recommencer")
 
-
-# Mode affichage de graphique bivariés avec regression linéaire
+# Affichage de graphique bivariés avec regression linéaire
 if (graphiques_bivariés):
     features = st.multiselect("Choisissez deux variables", list(df.columns))
     if len(features) != 2 :
@@ -180,7 +177,7 @@ if (graphiques_bivariés):
         st.pyplot(chart)
     st.button("Recommencer")
 
-# Mode Mise en évidence d'un profil (et comparaison avec les autres)
+# Mise en évidence du profil du client (et comparaison avec les autres)
 if (recherche):
     features = st.multiselect("Choisissez deux variables", list(df.columns))
     if len(features) != 2 :
