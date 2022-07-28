@@ -111,7 +111,7 @@ if (show_credit_decision):
     st.header('Scoring et décision du modèle')
 
 #Appel de l'API :
-    API_url = "http://127.0.0.1:5000/credit/" + str(id_client)
+    API_url = "https://quiet-dawn-23715.herokuapp.com/credit/" + str(id_client)
 
 #Prédiction du score du client
     with st.spinner('Chargement du score du client...'):
