@@ -15,8 +15,8 @@ st.write("""
 	""")
 
 #Chargement des dataset
-PATH = r'C:\Users\nha5600\Desktop\BUREAU\FORMATION\Suite\P7\Predictions\\'
-data = pd.read_csv(PATH+r'test_df_sample_.csv')
+PATH = ''
+data = pd.read_csv(PATH+'test_df_sample_.csv')
 df = data.drop('TARGET', axis = 1)
 df = df.drop('Unnamed: 0', axis = 1)
 cust_list = df['SK_ID_CURR'].unique()[:10]
